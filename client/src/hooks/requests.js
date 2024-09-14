@@ -2,7 +2,6 @@
 async function httpGetPlanets() {
   const response = await fetch("http://localhost:8000/planets");
   return await response.json();
-  
 }
 //load launches, sort by flight number, return as JSON
 async function httpGetLaunches() {
@@ -27,14 +26,18 @@ async function httpSubmitLaunch(launch) {
   }
 }
 
+// Delete launch with given ID.
 async function httpAbortLaunch(id) {
-  // TODO: Once API is ready.
-  // Delete launch with given ID.
+  try {
+    return await fetch(`http://localhost:8000/launches/${id}`, {
+      method: "delete",
+    });
+  } catch (error) {
+    console.log(error);
+    return {
+      ok: false,
+    };
+  }
 }
 
-export {
-  httpGetPlanets,
-  httpGetLaunches,
-  httpSubmitLaunch,
-  httpAbortLaunch,
-};
+export { httpGetPlanets, httpGetLaunches, httpSubmitLaunch, httpAbortLaunch };
