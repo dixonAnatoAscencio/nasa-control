@@ -12,18 +12,18 @@ async function httpGetLaunches() {
 }
 
 async function httpSubmitLaunch(launch) {
-  try{
-    return await fetch("http://localhost:8000/launches", {
-      method: 'post',
+  try {
+    return await fetch(`http://localhost:8000/launches`, {
+      method: "post",
       headers: {
-        'Content-Type': 'aplication/json'
-      }
-    })
-  }catch(err) {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(launch),
+    });
+  } catch (error) {
     return {
-      ok:false,
-    }
-
+      ok: false,
+    };
   }
 }
 
